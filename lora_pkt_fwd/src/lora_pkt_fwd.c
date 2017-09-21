@@ -1806,7 +1806,7 @@ void thread_up(void) {
                 exit(EXIT_FAILURE);
             }
 
-            j = snprintf((char *)(buff_up + buff_index), TX_BUFF_SIZE-buff_index, ",\"crc\":%04x", p->crc);
+            j = snprintf((char *)(buff_up + buff_index), TX_BUFF_SIZE-buff_index, ",\"crc\":%04hhX", p->crc);
             if (j > 0) {
                 buff_index += j;
             } else {
