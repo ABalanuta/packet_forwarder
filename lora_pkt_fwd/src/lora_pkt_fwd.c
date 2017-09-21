@@ -1796,6 +1796,16 @@ void thread_up(void) {
                 MSG("ERROR: [up] bin_to_b64 failed line %u\n", (__LINE__ - 5));
                 exit(EXIT_FAILURE);
             }
+
+            /* Add more parameters */
+            j = snprintf((char *)(buff_up + buff_index), TX_BUFF_SIZE-buff_index, ",\"snr_min\":%.2f,\"snr_min\":%.2f", p->snr_min, p->snr_max);
+            if (j > 0) {
+                buff_index += j;
+            } else {
+                MSG("ERROR: [up] snprintf failed line %u\n", (__LINE__ - 4));
+                exit(EXIT_FAILURE);
+            }
+
             buff_up[buff_index] = '"';
             ++buff_index;
 
