@@ -1806,6 +1806,14 @@ void thread_up(void) {
                 exit(EXIT_FAILURE);
             }
 
+            j = snprintf((char *)(buff_up + buff_index), TX_BUFF_SIZE-buff_index, ",\"crc\":%04x", p->crc);
+            if (j > 0) {
+                buff_index += j;
+            } else {
+                MSG("ERROR: [up] snprintf failed line %u\n", (__LINE__ - 4));
+                exit(EXIT_FAILURE);
+            }
+
             buff_up[buff_index] = '"';
             ++buff_index;
 
